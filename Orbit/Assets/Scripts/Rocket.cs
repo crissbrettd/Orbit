@@ -32,12 +32,14 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    ResetAfterDelay();
+        //}
     }
 
     void OnMouseDown()
     {
-        Debug.Log("down");
         _spriteRenderer.color = Color.green;
     }
 
