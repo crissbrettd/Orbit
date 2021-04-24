@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GravityWell : MonoBehaviour
 {
-    private GameObject parentPlanet;
-    private Planetoid planetoid => parentPlanet.GetComponent<Planetoid>();
+    private GameObject _parentBody;
+    private Planetoid planetoid => _parentBody.GetComponent<Planetoid>();
 
     // Start is called before the first frame update
     void Start()
     {
-        parentPlanet = transform.parent.gameObject;
+        _parentBody = transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -22,18 +22,18 @@ public class GravityWell : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{collision.gameObject.name} entering the gravity well.");
-        if (collision.gameObject.tag == "Rocket")
+        if (collision.gameObject.GetComponent<MassiveObject>() != null)
         {
-            planetoid.rocketInGravityWell = true;
+            _parentBody.GetComponent<MassiveBody>()._fallingObjects.Add(collision.gameObject); 
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log($"{collision.gameObject.name} exiting the gravity well.");
-        if (collision.gameObject.tag == "Rocket")
+        if (collision.gameObject.GetComponent<MassiveObject>() != null)
         {
-            planetoid.rocketInGravityWell = false;
+            _parentBody.GetComponent<MassiveBody>()._fallingObjects.Remove(collision.gameObject);
         }
     }
 }

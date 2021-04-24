@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField]
+    public TextMeshProUGUI speedTMP;
+
+    [SerializeField]
+    public TextMeshProUGUI accelerationTMP;
+
+    [Space]
+
     [SerializeField]
     public float _LaunchSpeed = 750f;
 
@@ -16,9 +25,14 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     public float _LineLength = 10f;
 
+    public float _currentGravitationalAcceleration = 0f;
+
     private Vector2 _startingPosition;
     private Quaternion _startingRotation;
     private Vector2 _direction;
+
+    // For use in speed calculations
+    private Vector2 _lastPosition = Vector2.zero;
 
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
@@ -48,10 +62,17 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    ResetAfterDelay();
-        //}
+
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 distancePerFrame = transform.position - (Vector3)_lastPosition;
+        _lastPosition = transform.position;
+        Vector3 speed = distancePerFrame * Time.deltaTime;
+
+        Debug.Log(speed);
+        accelerationTMP.text = $"Gravitational Acceleration: {_currentGravitationalAcceleration}";
     }
 
     void LateUpdate()
@@ -96,20 +117,6 @@ public class Rocket : MonoBehaviour
         _rb.position = desiredMousePosition;
 
         DrawLine();
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //StartCoroutine(ResetAfterDelay());
-    }
-
-    IEnumerator ResetAfterDelay()
-    {
-        yield return new WaitForSeconds(3);
-        transform.position = _startingPosition;
-        transform.rotation = _startingRotation;
-        _rb.isKinematic = true;
-        _rb.velocity = Vector2.zero;
     }
 
     void DrawLine()
