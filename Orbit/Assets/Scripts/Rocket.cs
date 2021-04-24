@@ -10,11 +10,20 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     public float _MaxDragDistance = 10f;
 
+    [SerializeField]
+    public float _LineWidth = 1f;
+
+    [SerializeField]
+    public float _LineLength = 10f;
+
     private Vector2 _startingPosition;
     private Quaternion _startingRotation;
+    private Vector2 _direction;
+
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
+    private LineRenderer line;
 
     void Awake()
     {
@@ -29,6 +38,11 @@ public class Rocket : MonoBehaviour
         _startingRotation = transform.rotation;
         _rb.isKinematic = true;
         _defaultColor = _spriteRenderer.color;
+
+        line = gameObject.AddComponent<LineRenderer>();
+        line.startColor = Color.white;
+        line.endColor = Color.white;
+        line.enabled = false;
     }
 
     // Update is called once per frame
@@ -45,7 +59,7 @@ public class Rocket : MonoBehaviour
         // Only move transform if rocket is moving
         if (_rb.isKinematic == false)
         {
-            transform.right = _rb.velocity.normalized;
+            transform.up = _rb.velocity.normalized;
         }
     }
 
@@ -63,34 +77,30 @@ public class Rocket : MonoBehaviour
         _rb.AddForce(direction * _LaunchSpeed);
 
         _spriteRenderer.color = _defaultColor;
+
+        line.enabled = false;
     }
 
     void OnMouseDrag()
     {
         Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        Vector2 direction = (desiredMousePosition - _startingPosition).normalized;
-
-        //float angle = Vector2.Angle(desiredMousePosition, direction);
-
+        _direction = (desiredMousePosition - _startingPosition).normalized;
         float distance = Vector2.Distance(desiredMousePosition, _startingPosition);
-
-        //Debug.Log(angle);
 
         // cannot drag more than certain distance
         if (distance > _MaxDragDistance)
         {
-            desiredMousePosition = (_MaxDragDistance * direction) + _startingPosition;
+            desiredMousePosition = (_MaxDragDistance * _direction) + _startingPosition;
         }
-        
-        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle);
 
         _rb.position = desiredMousePosition;
+
+        DrawLine();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine(ResetAfterDelay());
+        //StartCoroutine(ResetAfterDelay());
     }
 
     IEnumerator ResetAfterDelay()
@@ -100,5 +110,17 @@ public class Rocket : MonoBehaviour
         transform.rotation = _startingRotation;
         _rb.isKinematic = true;
         _rb.velocity = Vector2.zero;
+    }
+
+    void DrawLine()
+    {
+        List<Vector3> pos = new List<Vector3>();
+        pos.Add(new Vector3(transform.position.x, transform.position.y));
+        pos.Add(new Vector3(transform.position.x + _LineLength * -_direction.x, transform.position.y + _LineLength * -_direction.y));
+        line.startWidth = _LineWidth;
+        line.endWidth = _LineWidth;
+        line.SetPositions(pos.ToArray());
+        line.useWorldSpace = true;
+        line.enabled = true;
     }
 }

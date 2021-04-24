@@ -241,6 +241,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
+      propertyPath: _LineWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
+      propertyPath: _LineLength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
+      propertyPath: _LaunchSpeed
+      value: 700
+      objectReference: {fileID: 0}
     - target: {fileID: 852339893454996477, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
       propertyPath: m_Name
       value: Rocket
@@ -363,8 +375,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1281282969}
     - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
-      propertyPath: PlanetGravity
-      value: 2.01
+      propertyPath: _gravityWell
+      value: 
+      objectReference: {fileID: 1281282969}
+    - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
+      propertyPath: _PlanetGravity
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
+      propertyPath: _planetGravity
+      value: 4.04
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: GravityFieldOpacity
@@ -372,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: RelativeGravityWellRadius
-      value: 1.4
+      value: 2.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
