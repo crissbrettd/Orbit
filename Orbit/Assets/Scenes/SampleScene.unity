@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Speed: '
+  m_text: 'Initial Speed: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -813,17 +813,25 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
+      propertyPath: _lineWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
       propertyPath: _LineLength
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
       propertyPath: _LaunchSpeed
-      value: 700
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
       propertyPath: accelerationTMP
       value: 
       objectReference: {fileID: 91711011}
+    - target: {fileID: 852339893454996465, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
+      propertyPath: _baseLaunchSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 852339893454996477, guid: 098a124095f4afb459bcb14e86f42805, type: 3}
       propertyPath: m_Name
       value: Rocket

@@ -14,22 +14,24 @@ public class Rocket : MonoBehaviour
     [Space]
 
     [SerializeField]
-    public float _LaunchSpeed = 750f;
+    public float _baseLaunchSpeed = 100f;
 
     [SerializeField]
-    public float _MaxDragDistance = 10f;
+    public float _maxDragDistance = 10f;
 
     [SerializeField]
-    public float _LineWidth = 1f;
+    public float _lineWidth = 0.1f;
 
     [SerializeField]
-    public float _LineLength = 10f;
+    public float _lineLength = 10f;
 
     public float _currentGravitationalAcceleration = 0f;
 
     private Vector2 _startingPosition;
     private Quaternion _startingRotation;
     private Vector2 _direction;
+    private float distance;
+    private float dragLaunchSpeedMultiplier;
 
     // For use in speed calculations
     private Vector2 _lastPosition = Vector2.zero;
@@ -54,8 +56,8 @@ public class Rocket : MonoBehaviour
         _defaultColor = _spriteRenderer.color;
 
         line = gameObject.AddComponent<LineRenderer>();
-        line.startColor = Color.white;
-        line.endColor = Color.white;
+        line.startColor = Color.grey;
+        line.endColor = Color.grey;
         line.enabled = false;
     }
 
@@ -94,8 +96,14 @@ public class Rocket : MonoBehaviour
         Vector2 currentPosition = transform.position;
         Vector2 direction = (_startingPosition - currentPosition).normalized;
 
+        dragLaunchSpeedMultiplier = distance <= _maxDragDistance ? distance : _maxDragDistance;
+
+        float modifiedLaunchSpeed = dragLaunchSpeedMultiplier * _baseLaunchSpeed;
+
+        speedTMP.text = $"Initial Speed: {modifiedLaunchSpeed}";
+
         _rb.isKinematic = false;
-        _rb.AddForce(direction * _LaunchSpeed);
+        _rb.AddForce(direction * modifiedLaunchSpeed);
 
         _spriteRenderer.color = _defaultColor;
 
@@ -106,12 +114,16 @@ public class Rocket : MonoBehaviour
     {
         Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _direction = (desiredMousePosition - _startingPosition).normalized;
-        float distance = Vector2.Distance(desiredMousePosition, _startingPosition);
+        distance = Vector2.Distance(desiredMousePosition, _startingPosition);
+
+        Debug.Log(distance);
+
+        //dragLaunchSpeedMultiplier = distance % 10
 
         // cannot drag more than certain distance
-        if (distance > _MaxDragDistance)
+        if (distance > _maxDragDistance)
         {
-            desiredMousePosition = (_MaxDragDistance * _direction) + _startingPosition;
+            desiredMousePosition = (_maxDragDistance * _direction) + _startingPosition;
         }
 
         _rb.position = desiredMousePosition;
@@ -123,9 +135,9 @@ public class Rocket : MonoBehaviour
     {
         List<Vector3> pos = new List<Vector3>();
         pos.Add(new Vector3(transform.position.x, transform.position.y));
-        pos.Add(new Vector3(transform.position.x + _LineLength * -_direction.x, transform.position.y + _LineLength * -_direction.y));
-        line.startWidth = _LineWidth;
-        line.endWidth = _LineWidth;
+        pos.Add(new Vector3(transform.position.x + _lineLength * -_direction.x, transform.position.y + _lineLength * -_direction.y));
+        line.startWidth = _lineWidth;
+        line.endWidth = _lineWidth;
         line.SetPositions(pos.ToArray());
         line.useWorldSpace = true;
         line.enabled = true;
