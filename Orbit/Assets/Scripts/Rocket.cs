@@ -44,7 +44,7 @@ public class Rocket : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        //_spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -53,7 +53,7 @@ public class Rocket : MonoBehaviour
         _startingPosition = transform.position;
         _startingRotation = transform.rotation;
         _rb.isKinematic = true;
-        _defaultColor = _spriteRenderer.color;
+        //_defaultColor = _spriteRenderer.color;
 
         line = gameObject.AddComponent<LineRenderer>();
         line.startColor = Color.grey;
@@ -88,7 +88,7 @@ public class Rocket : MonoBehaviour
 
     void OnMouseDown()
     {
-        _spriteRenderer.color = Color.green;
+        //_spriteRenderer.color = Color.green;
     }
 
     void OnMouseUp()
@@ -105,7 +105,7 @@ public class Rocket : MonoBehaviour
         _rb.isKinematic = false;
         _rb.AddForce(direction * modifiedLaunchSpeed);
 
-        _spriteRenderer.color = _defaultColor;
+        //_spriteRenderer.color = _defaultColor;
 
         line.enabled = false;
     }

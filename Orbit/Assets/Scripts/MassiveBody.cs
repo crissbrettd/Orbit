@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MassiveBody : MonoBehaviour
 {
     [SerializeField]
-    [Range(1, 1000)]
+    [Range(1, 10000)]
     public float _massOfBody = 450f;
 
     [SerializeField]

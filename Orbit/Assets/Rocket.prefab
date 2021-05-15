@@ -98,8 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3884962b350c94fbbadbc18dffb246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _LaunchSpeed: 900
-  _MaxDragDistance: 10
+  speedTMP: {fileID: 0}
+  accelerationTMP: {fileID: 0}
+  _baseLaunchSpeed: 100
+  _maxDragDistance: 10
+  _lineWidth: 1
+  _lineLength: 10
+  _currentGravitationalAcceleration: 0
 --- !u!50 &852339893454996464
 Rigidbody2D:
   serializedVersion: 4
