@@ -14,13 +14,16 @@ public class Rocket : MonoBehaviour
     [Space]
 
     [SerializeField]
-    public float _baseLaunchSpeed = 100f;
+    private float _baseLaunchSpeed = 100f;
 
     [SerializeField]
-    public float _maxDragDistance = 10f;
+    private float _boostMultiplier = 2f;
 
     [SerializeField]
-    public float _lineWidth = 0.1f;
+    private float _maxDragDistance = 10f;
+
+    [SerializeField]
+    private float _lineWidth = 0.1f;
 
     [SerializeField]
     public float _lineLength = 10f;
@@ -64,7 +67,9 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.Space)) {
+            AddBoost();
+        }
     }
 
     void FixedUpdate()
@@ -73,7 +78,7 @@ public class Rocket : MonoBehaviour
         _lastPosition = transform.position;
         Vector3 speed = distancePerFrame * Time.deltaTime;
 
-        Debug.Log(speed);
+        // Debug.Log(speed);
         accelerationTMP.text = $"Gravitational Acceleration: {_currentGravitationalAcceleration}";
     }
 
@@ -129,6 +134,11 @@ public class Rocket : MonoBehaviour
         _rb.position = desiredMousePosition;
 
         DrawLine();
+    }
+
+    void AddBoost() {
+        Vector2 direction = _rb.velocity.normalized;
+        _rb.AddForce(direction * _boostMultiplier);
     }
 
     void DrawLine()
