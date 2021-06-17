@@ -306,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6131091385911186138, guid: 0f4084879ff3b264a82f3a0aa8ab1c56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6131091385911186138, guid: 0f4084879ff3b264a82f3a0aa8ab1c56, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 2002228159}
   - component: {fileID: 2002228158}
   m_Layer: 5
-  m_Name: Launch Speed Slider Label
+  m_Name: LaunchSpeedSliderLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1334,7 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149265, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149265, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1370,7 +1370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149267, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_Name
-      value: Body
+      value: PrimaryBody
       objectReference: {fileID: 0}
     - target: {fileID: 3386729211443149267, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_IsActive
@@ -1411,6 +1411,10 @@ PrefabInstance:
     - target: {fileID: 3386729211443149271, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: RelativeGravityWellRadius
       value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649992199196849479, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
+      propertyPath: m_Name
+      value: GravityWell
       objectReference: {fileID: 0}
     - target: {fileID: 6649992199196849479, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_IsActive

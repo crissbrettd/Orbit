@@ -22,6 +22,8 @@ public class Rocketv2 : MonoBehaviour
 
     private Vector2 startingPosition;
 
+    private float launchYSize;
+
     private Rigidbody2D _rb;
 
     void Awake()
@@ -33,8 +35,17 @@ public class Rocketv2 : MonoBehaviour
     void Start()
     {
         _rb.isKinematic = true;
-        startingPosition = transform.position;
         hasRocketLaunched = false;
+
+        // Get info of primary massive body in scene for positioning of rocket
+        GameObject primaryBody = GameObject.Find("PrimaryBody");
+        GameObject gravityWell = GameObject.Find("GravityWell");
+        // Amount of movement for rocket in Y is based on size of the gravity well.
+        launchYSize = gravityWell.transform.lossyScale.y / 2;
+
+        // Rocket starts at Y of massive body
+        startingPosition = new Vector2(transform.position.x, primaryBody.transform.position.y);
+        transform.position = startingPosition;
     }
 
     // Update is called once per frame
@@ -68,7 +79,9 @@ public class Rocketv2 : MonoBehaviour
 
     void OnMouseDrag() {
         Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (desiredMousePosition.y < startingPosition.y + 10 && desiredMousePosition.y > startingPosition.y - 30) {
+
+        // Rocket can only be dragged within bounds
+        if (desiredMousePosition.y < startingPosition.y + launchYSize && desiredMousePosition.y > startingPosition.y - launchYSize) {
             transform.position = new Vector2(transform.position.x, desiredMousePosition.y);
         }
         
