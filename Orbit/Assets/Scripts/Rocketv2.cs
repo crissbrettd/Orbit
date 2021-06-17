@@ -20,6 +20,8 @@ public class Rocketv2 : MonoBehaviour
 
     private bool hasRocketLaunched;
 
+    private Vector2 startingPosition;
+
     private Rigidbody2D _rb;
 
     void Awake()
@@ -31,8 +33,8 @@ public class Rocketv2 : MonoBehaviour
     void Start()
     {
         _rb.isKinematic = true;
+        startingPosition = transform.position;
         hasRocketLaunched = false;
-        LaunchSpeedSlider.transform.SetParent(GameObject.Find("HiddenObjects").transform);
     }
 
     // Update is called once per frame
@@ -61,14 +63,20 @@ public class Rocketv2 : MonoBehaviour
     void AddSpeedToLaunch() {
         launchSpeed += 2f;
         speedTMP.text = $"Initial Speed: {launchSpeed}";
-        LaunchSpeedSlider.transform.SetParent(GameObject.Find("ScreenCanvas").transform);
         LaunchSpeedSlider.value = launchSpeed;
+    }
+
+    void OnMouseDrag() {
+        Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (desiredMousePosition.y < startingPosition.y + 10 && desiredMousePosition.y > startingPosition.y - 30) {
+            transform.position = new Vector2(transform.position.x, desiredMousePosition.y);
+        }
+        
     }
 
     void LaunchRocket() {
         Debug.Log("Launching");
         hasRocketLaunched = true;
-        LaunchSpeedSlider.transform.SetParent(GameObject.Find("HiddenObjects").transform);
         _rb.isKinematic = false;
         _rb.AddForce(Vector2.right * launchSpeed);
     }
