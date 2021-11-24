@@ -47,9 +47,9 @@ public class MassiveBody : MonoBehaviour
                 float accelerationForce = ComputeGravitationalForceForObject(o);
                 o.GetComponent<Rigidbody2D>().AddForce(accelerationForce * objectToPlanetDirection);
 
-                if (o.GetComponent<Rocket>() != null)
+                if (o.GetComponent<Rocketv2>() != null)
                 {
-                    o.GetComponent<Rocket>()._currentGravitationalAcceleration = accelerationForce;
+                    o.GetComponent<Rocketv2>()._currentGravitationalAcceleration = accelerationForce;
                 }
              }
         }

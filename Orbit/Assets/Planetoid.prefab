@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3386729211443149265}
   - component: {fileID: 3386729211443149264}
   - component: {fileID: 3386729211443149270}
-  - component: {fileID: 3386729211443149271}
   m_Layer: 0
   m_Name: Planetoid
   m_TagString: Untagged
@@ -102,22 +101,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &3386729211443149271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3386729211443149267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8935c850d1af2c4ca3dd2ab1564c1c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RelativeGravityWellRadius: 1.5
-  GravityWell: {fileID: 0}
-  GravityFieldOpacity: 50
-  rocket: {fileID: 0}
 --- !u!58 &5470169816243827263
 CircleCollider2D:
   m_ObjectHideFlags: 0

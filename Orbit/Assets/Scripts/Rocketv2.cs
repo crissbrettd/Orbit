@@ -20,6 +20,8 @@ public class Rocketv2 : MonoBehaviour
 
     private bool hasRocketLaunched;
 
+    public float _currentGravitationalAcceleration = 0f;
+
     private Vector2 startingPosition;
 
     private float launchYSize;
@@ -62,6 +64,10 @@ public class Rocketv2 : MonoBehaviour
         }
     }
 
+    void FixedUpdate() {
+        accelerationTMP.text = $"Gravitational Acceleration: {_currentGravitationalAcceleration}";
+    }
+
     void LateUpdate()
     {
         // Only move transform if rocket is moving
@@ -78,13 +84,14 @@ public class Rocketv2 : MonoBehaviour
     }
 
     void OnMouseDrag() {
-        Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!hasRocketLaunched) {
+            Vector2 desiredMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Rocket can only be dragged within bounds
-        if (desiredMousePosition.y < startingPosition.y + launchYSize && desiredMousePosition.y > startingPosition.y - launchYSize) {
-            transform.position = new Vector2(transform.position.x, desiredMousePosition.y);
+            // Rocket can only be dragged within bounds
+            if (desiredMousePosition.y < startingPosition.y + launchYSize && desiredMousePosition.y > startingPosition.y - launchYSize) {
+                transform.position = new Vector2(transform.position.x, desiredMousePosition.y);
+            }
         }
-        
     }
 
     void LaunchRocket() {

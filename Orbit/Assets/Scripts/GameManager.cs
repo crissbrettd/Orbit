@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    GameObject LevelBounds;
+
+    [SerializeField]
     Rocketv2 PlayerRocket;
 
     [SerializeField]
@@ -24,12 +27,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (numberOfRevolutions >= 5) {
-            SceneManager.LoadScene(0);
+            ResetScene();
         }
     }
 
     public void AddRevolution() {
         numberOfRevolutions += 1;
         tmpRevolutions.text = $"Number of revolutions: {numberOfRevolutions}";
+    }
+
+    void OnTriggerExit2D(Collider2D collider) {
+        // if (collider.gameObject.tag == "Player") {
+            Debug.LogWarning("Player left screen");
+        // }
+    }
+
+    public void ResetScene() {
+        SceneManager.LoadScene(0);
     }
 }
