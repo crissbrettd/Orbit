@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316.78128, y: 265.6875}
+  m_AnchoredPosition: {x: -316.78128, y: 249.89062}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91711011
@@ -389,7 +389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316.78128, y: 296.34375}
+  m_AnchoredPosition: {x: -316.78128, y: 280.54688}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131680464
@@ -510,6 +510,7 @@ MonoBehaviour:
   accelerationTMP: {fileID: 91711011}
   LaunchSpeedSlider: {fileID: 991002058}
   launchSpeed: 1
+  _currentGravitationalAcceleration: 0
 --- !u!1 &186996650
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -490.50003, y: 224.8125}
+  m_AnchoredPosition: {x: -490.50003, y: 209.01562}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &991002058
@@ -1376,7 +1377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316.78125, y: 183.9375}
+  m_AnchoredPosition: {x: -316.78125, y: 168.14062}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690696710
@@ -1510,7 +1511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316.78125, y: 235.03125}
+  m_AnchoredPosition: {x: -316.78125, y: 219.23438}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002228158
@@ -1684,38 +1685,6 @@ PrefabInstance:
     - target: {fileID: 3386729211443149270, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_IsTrigger
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: rocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: GravityWell
-      value: 
-      objectReference: {fileID: 2052467860}
-    - target: {fileID: 0}
-      propertyPath: _gravityWell
-      value: 
-      objectReference: {fileID: 2052467860}
-    - target: {fileID: 0}
-      propertyPath: _PlanetGravity
-      value: 4.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: _planetGravity
-      value: 4.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: GravityFieldOpacity
-      value: 39.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: RelativeGravityWellRadius
-      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 6649992199196849479, guid: 5a2f4b53f77da8c4fb5544a48b4cf92f, type: 3}
       propertyPath: m_Name

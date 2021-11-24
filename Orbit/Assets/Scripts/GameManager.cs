@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI tmpRevolutions;
 
     private int numberOfRevolutions = 0;
+    
+    public Vector2 lastLaunchPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lastLaunchPosition = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -34,6 +36,14 @@ public class GameManager : MonoBehaviour
     public void AddRevolution() {
         numberOfRevolutions += 1;
         tmpRevolutions.text = $"Number of revolutions: {numberOfRevolutions}";
+    }
+
+    public void SetLastLaunchPosition(Vector2 pos) {
+        lastLaunchPosition = pos;
+    }
+
+    public Vector2 GetLastLaunchPosition() {
+        return lastLaunchPosition;
     }
 
     void OnTriggerExit2D(Collider2D collider) {

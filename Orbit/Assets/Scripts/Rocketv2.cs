@@ -23,10 +23,13 @@ public class Rocketv2 : MonoBehaviour
     public float _currentGravitationalAcceleration = 0f;
 
     private Vector2 startingPosition;
+    private Vector2 currentAttemptStartingPosition;
 
     private float launchYSize;
 
     private Rigidbody2D _rb;
+
+    private GameManager gameManager;
 
     void Awake()
     {
@@ -39,15 +42,33 @@ public class Rocketv2 : MonoBehaviour
         _rb.isKinematic = true;
         hasRocketLaunched = false;
 
+        gameManager = GameObject.Find("GameManager")
+            .GetComponent<GameManager>();
+
+        DontDestroyOnLoad(gameManager);
+
         // Get info of primary massive body in scene for positioning of rocket
         GameObject primaryBody = GameObject.Find("PrimaryBody");
         GameObject gravityWell = GameObject.Find("GravityWell");
+
         // Amount of movement for rocket in Y is based on size of the gravity well.
         launchYSize = gravityWell.transform.lossyScale.y / 2;
 
-        // Rocket starts at Y of massive body
-        startingPosition = new Vector2(transform.position.x, primaryBody.transform.position.y);
-        transform.position = startingPosition;
+        // Rocket initially starts at Y of massive body
+        startingPosition = new Vector2(
+                transform.position.x, 
+                primaryBody.transform.position.y);
+
+        // Start rocket in last launch location if one is available
+        if (gameManager.lastLaunchPosition == Vector2.zero) {
+            currentAttemptStartingPosition = startingPosition;
+        }
+        else {
+            currentAttemptStartingPosition = gameManager
+                .GetLastLaunchPosition();
+        }
+        
+        transform.position = currentAttemptStartingPosition;
     }
 
     // Update is called once per frame
@@ -95,6 +116,7 @@ public class Rocketv2 : MonoBehaviour
     }
 
     void LaunchRocket() {
+        gameManager.SetLastLaunchPosition(transform.position);
         Debug.Log("Launching");
         hasRocketLaunched = true;
         _rb.isKinematic = false;
