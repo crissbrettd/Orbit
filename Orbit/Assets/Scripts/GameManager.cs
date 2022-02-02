@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     GameObject LevelBounds;
 
     [SerializeField]
-    Rocketv2 PlayerRocket;
+    Rocketv3 PlayerRocket;
 
     [SerializeField]
     TextMeshProUGUI tmpRevolutions;

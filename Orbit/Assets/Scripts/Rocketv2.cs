@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Rocketv2 : MonoBehaviour
 {
@@ -36,9 +36,6 @@ public class Rocketv2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _rb.isKinematic = true;
-        hasRocketLaunched = false;
-
         // Get info of primary massive body in scene for positioning of rocket
         GameObject primaryBody = GameObject.Find("PrimaryBody");
         GameObject gravityWell = GameObject.Find("GravityWell");
