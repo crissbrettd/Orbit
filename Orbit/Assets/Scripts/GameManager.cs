@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI tmpRevolutions;
 
-    private int numberOfRevolutions = 0;
+    private int numberOfRevolutions = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +26,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (numberOfRevolutions >= 5) {
-            ResetScene();
-        }
+
+    }
+
+    void FixedUpdate()
+    {
+      
     }
 
     public void AddRevolution() {
@@ -37,9 +40,7 @@ public class GameManager : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        // if (collider.gameObject.tag == "Player") {
-            Debug.LogWarning("Player left screen");
-        // }
+      Debug.LogWarning("Player left screen");
     }
 
     public void ResetScene() {

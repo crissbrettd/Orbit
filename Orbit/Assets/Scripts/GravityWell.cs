@@ -34,6 +34,7 @@ public class GravityWell : MonoBehaviour
         if (collision.gameObject.GetComponent<MassiveObject>() != null)
         {
             _parentBody.GetComponent<MassiveBody>()._fallingObjects.Add(collision.gameObject); 
+            collision.gameObject.GetComponent<Rocketv3>()._rocketInGravityWell = true;
         }
 
         CreateOrbitLine(OrbitEntranceCoordinates);
@@ -45,6 +46,7 @@ public class GravityWell : MonoBehaviour
         if (collision.gameObject.GetComponent<MassiveObject>() != null)
         {
             _parentBody.GetComponent<MassiveBody>()._fallingObjects.Remove(collision.gameObject);
+            collision.gameObject.GetComponent<Rocketv3>()._rocketInGravityWell = false;
         }
     }
 

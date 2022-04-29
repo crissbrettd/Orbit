@@ -9,8 +9,8 @@ public class OrbitLapLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager")
-            .GetComponent<GameManager>();
+      gameManager = GameObject.Find("GameManager")
+        .GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -19,9 +19,10 @@ public class OrbitLapLine : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Player") {
-            gameManager.AddRevolution();
-        }
+    void OnTriggerEnter2D(Collider2D collider) 
+    {
+      if (collider.gameObject.tag == "Player") {
+        gameManager.AddRevolution();
+      }
     }
 }
